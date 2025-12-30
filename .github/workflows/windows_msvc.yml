@@ -27,7 +27,7 @@ jobs:
 
     - name: Install Dependencies via vcpkg
       run: |
-        .\vcpkg\vcpkg install tbb:x64-windows boost-program-options:x64-windows boost-range:x64-windows boost-dynamic-bitset:x64-windows boost-lexical-cast:x64-windows hwloc:x64-windows
+        .\vcpkg\vcpkg install tbb:x64-windows boost-program-options:x64-windows boost-range:x64-windows boost-dynamic-bitset:x64-windows boost-lexical-cast:x64-windows
       shell: cmd
 
     - name: Configure CMake
@@ -39,7 +39,8 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release ^
           -DCMAKE_CXX_FLAGS="/EHsc /DNOGDI /DNOMINMAX" ^
           -DKAHYPAR_DOWNLOAD_TBB=OFF ^
-          -DKAHYPAR_DOWNLOAD_BOOST=OFF
+          -DKAHYPAR_DOWNLOAD_BOOST=OFF ^
+          -DKAHYPAR_DISABLE_HWLOC=ON
       shell: cmd
 
     - name: Build
@@ -52,4 +53,5 @@ jobs:
         name: mt-kahypar-dll
         path: |
           build/lib/Release/*.dll
+          build/lib/Release/*.lib
           build/mt-kahypar/application/Release/*.exe
