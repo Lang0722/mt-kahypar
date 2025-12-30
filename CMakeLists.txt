@@ -6,7 +6,7 @@ set(MT_KAHYPAR_VERSION "1.5.3")
 string(SUBSTRING "${MT_KAHYPAR_VERSION}" 0 1 MT_KAHYPAR_SO_VERSION)
 set(MTKAHYPAR_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-project(MtKaHyPar
+project(MtKaHyParProject
         VERSION ${MT_KAHYPAR_VERSION}
         DESCRIPTION "Mt-KaHyPar: Multi-Threaded Karlsruhe Hypergraph Partitioning"
         LANGUAGES CXX C)
