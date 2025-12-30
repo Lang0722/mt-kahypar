@@ -14,18 +14,30 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Acquire vcpkg
+      uses: actions/checkout@v4
+      with:
+        repository: microsoft/vcpkg
+        path: vcpkg
+        fetch-depth: 1
+
+    - name: Bootstrap vcpkg
+      run: .\vcpkg\bootstrap-vcpkg.bat
+      shell: cmd
+
     - name: Install Dependencies via vcpkg
       run: |
-        vcpkg install tbb:x64-windows boost-program-options:x64-windows hwloc:x64-windows
+        .\vcpkg\vcpkg install tbb:x64-windows boost-program-options:x64-windows boost-range:x64-windows boost-dynamic-bitset:x64-windows boost-lexical-cast:x64-windows hwloc:x64-windows
       shell: cmd
 
     - name: Configure CMake
       run: |
         cmake -S . -B build -G "Visual Studio 17 2022" -A x64 ^
-          -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
+          -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake ^
           -DVCPKG_TARGET_TRIPLET=x64-windows ^
           -DBUILD_SHARED_LIBS=ON ^
           -DCMAKE_BUILD_TYPE=Release ^
+          -DCMAKE_CXX_FLAGS="/DNOGDI /DNOMINMAX" ^
           -DKAHYPAR_DOWNLOAD_TBB=OFF ^
           -DKAHYPAR_DOWNLOAD_BOOST=OFF
       shell: cmd
@@ -40,4 +52,4 @@ jobs:
         name: mt-kahypar-dll
         path: |
           build/lib/Release/*.dll
-          build/application/Release/*.exe
+          build/mt-kahypar/application/Release/*.exe
