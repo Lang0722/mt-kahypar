@@ -37,7 +37,7 @@ jobs:
           -DVCPKG_TARGET_TRIPLET=x64-windows ^
           -DBUILD_SHARED_LIBS=ON ^
           -DCMAKE_BUILD_TYPE=Release ^
-          -DCMAKE_CXX_FLAGS="/DNOGDI /DNOMINMAX" ^
+          -DCMAKE_CXX_FLAGS="/EHsc /DNOGDI /DNOMINMAX" ^
           -DKAHYPAR_DOWNLOAD_TBB=OFF ^
           -DKAHYPAR_DOWNLOAD_BOOST=OFF
       shell: cmd
