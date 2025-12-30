@@ -32,6 +32,7 @@
 #include "mt-kahypar/partition/metrics.h"
 #include "mt-kahypar/partition/refinement/gains/gain_definitions.h"
 #include "mt-kahypar/utils/timer.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 #include "mt-kahypar/partition/refinement/gains/gain_cache_ptr.h"
 #include "mt-kahypar/datastructures/synchronized_edge_update.h"
 
@@ -221,12 +222,12 @@ namespace mt_kahypar {
 
         if ( benefit > 0 ) {
           // increase gain of v by benefit
-          __atomic_fetch_add(&m.gain, benefit, __ATOMIC_RELAXED);
+          mtk_atomic_fetch_add(&m.gain, benefit, MemoryOrder::Relaxed);
         }
 
         if ( penalty > 0 ) {
           // decrease gain of v by penalty
-          __atomic_fetch_sub(&m.gain, penalty, __ATOMIC_RELAXED);
+          mtk_atomic_fetch_sub(&m.gain, penalty, MemoryOrder::Relaxed);
         }
       }
     }
@@ -283,7 +284,7 @@ namespace mt_kahypar {
       const HyperedgeWeight attributed_gain = AttributedGains::gain(sync_update);
       // For recomputed gains, a postive gain means improvement. However, the opposite
       // is the case for attributed gains.
-      __atomic_fetch_add(&m.gain, attributed_gain, __ATOMIC_RELAXED);
+      mtk_atomic_fetch_add(&m.gain, attributed_gain, MemoryOrder::Relaxed);
     }
   }
 
@@ -330,7 +331,7 @@ namespace mt_kahypar {
         first_m.to == second_m.from ? 2 : 1;
       sync_update.block_of_other_node = second_m.from;
       const HyperedgeWeight attributed_gain = AttributedGains::gain(sync_update);
-      __atomic_fetch_add(&first_m.gain, -attributed_gain, __ATOMIC_RELAXED);
+      mtk_atomic_fetch_add(&first_m.gain, -attributed_gain, MemoryOrder::Relaxed);
 
       if ( tracker.wasNodeMovedInThisRound(second_move) )  {
         // Compute gain of second move
@@ -342,7 +343,7 @@ namespace mt_kahypar {
           first_m.to == second_m.to ? 2 : 1;
         sync_update.block_of_other_node = first_m.to;
         const HyperedgeWeight attributed_gain = AttributedGains::gain(sync_update);
-        __atomic_fetch_add(&second_m.gain, -attributed_gain, __ATOMIC_RELAXED);
+        mtk_atomic_fetch_add(&second_m.gain, -attributed_gain, MemoryOrder::Relaxed);
       }
     }
   }

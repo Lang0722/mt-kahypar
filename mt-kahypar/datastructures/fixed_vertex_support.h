@@ -31,6 +31,7 @@
 #include "mt-kahypar/datastructures/hypergraph_common.h"
 #include "mt-kahypar/parallel/stl/scalable_vector.h"
 #include "mt-kahypar/parallel/atomic_wrapper.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 
 namespace mt_kahypar {
 namespace ds {
@@ -117,8 +118,8 @@ class FixedVertexSupport {
     ASSERT(block != kInvalidPartition && block < _k);
     PartitionID expected = kInvalidPartition;
     PartitionID desired = block;
-    if ( __atomic_compare_exchange_n(&_fixed_vertex_data[hn].block,
-           &expected, desired, false, __ATOMIC_ACQ_REL, __ATOMIC_RELAXED) ) {
+    if ( mtk_atomic_compare_exchange(&_fixed_vertex_data[hn].block,
+           &expected, desired, MemoryOrder::AcqRel, MemoryOrder::Relaxed) ) {
       const HypernodeWeight weight_of_hn = _hg->nodeWeight(hn);
       _fixed_vertex_data[hn].fixed_vertex_contraction_cnt = 1;
       _fixed_vertex_data[hn].fixed_vertex_weight = weight_of_hn;
@@ -141,7 +142,7 @@ class FixedVertexSupport {
   // ! Returns the fixed vertex block of the node
   MT_KAHYPAR_ATTRIBUTE_ALWAYS_INLINE PartitionID fixedVertexBlock(const HypernodeID hn) const {
     ASSERT(hn < _num_nodes);
-    return __atomic_load_n(&_fixed_vertex_data[hn].block, __ATOMIC_RELAXED);
+    return mtk_atomic_load(&_fixed_vertex_data[hn].block, MemoryOrder::Relaxed);
   }
 
   // ####################### (Un)contractions #######################

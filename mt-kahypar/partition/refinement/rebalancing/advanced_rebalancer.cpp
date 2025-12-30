@@ -32,6 +32,7 @@
 
 #include "mt-kahypar/partition/refinement/gains/gain_definitions.h"
 #include "mt-kahypar/utils/cast.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 #include "mt-kahypar/partition/context.h"
 
 namespace mt_kahypar {
@@ -255,8 +256,8 @@ namespace impl {
   void deactivateOverloadedBlock(uint8_t* is_overloaded, size_t* num_overloaded_blocks) {
     if (*is_overloaded) {
       uint8_t expected = 1;
-      if (__atomic_compare_exchange_n(is_overloaded, &expected, 0, false, __ATOMIC_ACQUIRE, __ATOMIC_RELAXED)) {
-        __atomic_fetch_sub(num_overloaded_blocks, 1, __ATOMIC_RELAXED);
+      if (mtk_atomic_compare_exchange(is_overloaded, &expected, uint8_t(0), MemoryOrder::Acquire, MemoryOrder::Relaxed)) {
+        mtk_atomic_fetch_sub(num_overloaded_blocks, size_t(1), MemoryOrder::Relaxed);
       }
     }
   }
@@ -352,7 +353,7 @@ namespace impl {
         bool moved = phg.changeNodePart(
                       _gain_cache, m.node, m.from, m.to,
                       _context.partition.max_part_weights[m.to],
-                      [&] { move_id = __atomic_fetch_add(&global_move_id, 1, __ATOMIC_RELAXED); },
+                      [&] { move_id = mtk_atomic_fetch_add(&global_move_id, size_t(1), MemoryOrder::Relaxed); },
                       [&](const SynchronizedEdgeUpdate& sync_update) {
                         local_attributed_gain += AttributedGains::gain(sync_update);
                         if (!PartitionedHypergraph::is_graph && GainCache::triggersDeltaGainUpdate(sync_update)) {
@@ -427,7 +428,7 @@ namespace impl {
 
         _moves[move_id] = m;
       }
-      __atomic_fetch_add(&attributed_gain, local_attributed_gain, __ATOMIC_RELAXED);
+      mtk_atomic_fetch_add(&attributed_gain, static_cast<int64_t>(local_attributed_gain), MemoryOrder::Relaxed);
     };
 
     tbb::task_group tg;

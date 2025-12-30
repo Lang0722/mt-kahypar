@@ -38,7 +38,11 @@
 #include <sys/ioctl.h>
 #endif
 #include <stdio.h>
+#include <iostream>
+#include "mt-kahypar/utils/atomic_ops.h"
+#if !_WIN32
 #include <unistd.h>
+#endif
 
 #include "mt-kahypar/macros.h"
 
@@ -110,7 +114,7 @@ class ProgressBar {
   }
 
   void addToObjective(const int64_t delta) {
-    __atomic_fetch_add(&_objective, delta, __ATOMIC_RELAXED);
+    mtk_atomic_fetch_add(&_objective, delta, MemoryOrder::Relaxed);
   }
 
  private:

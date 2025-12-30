@@ -24,9 +24,9 @@ endif()
 if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
   message(FATAL_ERROR "Build directory must be different from source directory.")
 endif()
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-  message(FATAL_ERROR "MSVC not supported at the moment")
-endif()
+# if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+#   message(FATAL_ERROR "MSVC not supported at the moment")
+# endif()
 
 if (POLICY CMP0135)  # download timestamps
   cmake_policy(SET CMP0135 NEW)
@@ -265,9 +265,25 @@ else()
 endif()
 
 # Add compile flags that enable warnings
-target_compile_options(MtKaHyPar-BuildFlags INTERFACE
-  -W -Wall -Wextra -Wunused -Wuninitialized -Wfatal-errors -Wcast-qual -Woverloaded-virtual
-  -Wredundant-decls -Wno-unused-function -Winit-self -pedantic -DPARANOID -Wno-unused-function)
+if(MSVC)
+  target_compile_definitions(MtKaHyPar-BuildFlags INTERFACE
+    _CRT_SECURE_NO_WARNINGS
+    _SCL_SECURE_NO_WARNINGS
+    NOMINMAX
+    WIN32_LEAN_AND_MEAN
+  )
+  if(CMAKE_GENERATOR_PLATFORM MATCHES "ARM64")
+    target_compile_definitions(MtKaHyPar-BuildFlags INTERFACE _ARM64_)
+  elseif(CMAKE_GENERATOR_PLATFORM MATCHES "x64" OR CMAKE_SIZEOF_VOID_P EQUAL 8)
+    target_compile_definitions(MtKaHyPar-BuildFlags INTERFACE _AMD64_)
+  endif()
+  target_compile_options(MtKaHyPar-BuildFlags INTERFACE /W4 /bigobj /MP)
+else()
+  # Add compile flags that enable warnings
+  target_compile_options(MtKaHyPar-BuildFlags INTERFACE
+    -W -Wall -Wextra -Wunused -Wuninitialized -Wfatal-errors -Wcast-qual -Woverloaded-virtual
+    -Wredundant-decls -Wno-unused-function -Winit-self -pedantic -DPARANOID -Wno-unused-function)
+endif()
 
 if(KAHYPAR_USE_GCOV)
   # add coverage anaylsis compile and link flags
@@ -282,17 +298,23 @@ if (LLD_BIN AND KAHYPAR_X86)
   target_link_options(MtKaHyPar-BuildFlags INTERFACE -fuse-ld=lld)
 endif()
 
-target_compile_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:RELEASE>:-O3>
-                                                      $<$<CONFIG:RELWITHDEBINFO>:-g3 -UNDEBUG>  # keep assertions activated
-                                                      $<$<CONFIG:DEBUG>:-g3 -fno-omit-frame-pointer>)
-target_link_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:DEBUG>:-fno-omit-frame-pointer>)
+if(MSVC)
+  target_compile_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:RELEASE>:/O2 /Ob2>
+                                                        $<$<CONFIG:RELWITHDEBINFO>:/Zi /UNDEBUG>
+                                                        $<$<CONFIG:DEBUG>:/Zi>)
+else()
+  target_compile_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:RELEASE>:-O3>
+                                                        $<$<CONFIG:RELWITHDEBINFO>:-g3 -UNDEBUG>  # keep assertions activated
+                                                        $<$<CONFIG:DEBUG>:-g3 -fno-omit-frame-pointer>)
+  target_link_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:DEBUG>:-fno-omit-frame-pointer>)
+endif()
 
 if(UNIX AND NOT WIN32)
   target_compile_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:DEBUG>:-fsanitize=undefined>)
   target_link_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:DEBUG>:-fsanitize=undefined>)
 endif()
 
-if (KAHYPAR_X86 AND KAHYPAR_ENABLE_EXTENDED_INSTRUCTIONS)
+if (NOT MSVC AND KAHYPAR_X86 AND KAHYPAR_ENABLE_EXTENDED_INSTRUCTIONS)
   include(CheckCXXCompilerFlag)
   include(CheckSSE4_2)
   block()
@@ -325,8 +347,12 @@ else()
 endif()
 
 if(KAHYPAR_ENABLE_ARCH_COMPILE_OPTIMIZATIONS)
-  target_compile_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:RELEASE>:-mtune=native -march=native>
-                                                        $<$<CONFIG:RELWITHDEBINFO>:-mtune=native -march=native>)
+  if(MSVC)
+    target_compile_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:RELEASE>:/O2>)
+  else()
+    target_compile_options(MtKaHyPar-BuildFlags INTERFACE $<$<CONFIG:RELEASE>:-mtune=native -march=native>
+                                                          $<$<CONFIG:RELWITHDEBINFO>:-mtune=native -march=native>)
+  endif()
 endif()
 
 if(KAHYPAR_USE_ADDRESS_SANITIZER AND (NOT KAHYPAR_CI_BUILD))
@@ -386,7 +412,7 @@ if(NOT KAHYPAR_DISABLE_PARLAY)
     SOURCE_DIR     external_tools/parlay
   )
   target_include_directories(MtKaHyPar-Include INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/external_tools/parlay/include)
-  target_compile_options(MtKaHyPar-BuildFlags INTERFACE -DPARLAY_TBB)
+  target_compile_definitions(MtKaHyPar-BuildFlags INTERFACE PARLAY_TBB)
 endif()
 
 

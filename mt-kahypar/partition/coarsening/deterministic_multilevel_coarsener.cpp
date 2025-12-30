@@ -31,6 +31,7 @@
 #include "mt-kahypar/definitions.h"
 #include "mt-kahypar/partition/coarsening/policies/rating_fixed_vertex_acceptance_policy.h"
 #include "mt-kahypar/utils/hash.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 
 namespace mt_kahypar {
 
@@ -286,7 +287,7 @@ void DeterministicMultilevelCoarsener<TypeTraits>::calculatePreferredTargetClust
 
   if (best_target != u) {
     propositions[u] = best_target;
-    __atomic_fetch_add(&opportunistic_cluster_weight[best_target], hg.nodeWeight(u), __ATOMIC_RELAXED);
+    mtk_atomic_fetch_add(&opportunistic_cluster_weight[best_target], hg.nodeWeight(u), MemoryOrder::Relaxed);
   }
 }
 

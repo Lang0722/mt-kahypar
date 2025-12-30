@@ -8,16 +8,21 @@ function(add_gmock_test target)
 
     add_test(${target} ${target})
 
-    add_custom_command(TARGET ${target}
-                       POST_BUILD
-                       COMMAND cp ${target} ${target}_failed
-                       COMMAND ${target}
-                       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                       COMMENT "Running ${target}" VERBATIM)
+    # Skip post-build test execution on Windows when building shared libs
+    # because DLLs are not in the executable's directory.
+    # Use ctest to run tests instead.
+    if(NOT (WIN32 AND BUILD_SHARED_LIBS))
+      add_custom_command(TARGET ${target}
+                         POST_BUILD
+                         COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${target}> $<TARGET_FILE:${target}>_failed
+                         COMMAND ${target}
+                         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                         COMMENT "Running ${target}" VERBATIM)
 
-    add_custom_command(TARGET ${target}
-                       POST_BUILD
-                       COMMAND rm -f ${target}_failed
-                       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-                       COMMENT "Running ${target}" VERBATIM)
+      add_custom_command(TARGET ${target}
+                         POST_BUILD
+                         COMMAND ${CMAKE_COMMAND} -E remove $<TARGET_FILE:${target}>_failed
+                         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                         COMMENT "Cleanup ${target}" VERBATIM)
+    endif()
 endfunction()

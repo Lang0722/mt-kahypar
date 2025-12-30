@@ -1,5 +1,6 @@
 if(BUILD_SHARED_LIBS)
   add_library(mtkahypar SHARED mtkahypar.cpp)
+  target_compile_definitions(mtkahypar PRIVATE MTKAHYPAR_EXPORTS)
 else()
   add_library(mtkahypar STATIC mtkahypar.cpp)
 endif()

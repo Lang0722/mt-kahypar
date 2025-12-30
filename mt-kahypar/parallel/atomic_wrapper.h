@@ -27,8 +27,13 @@
 
 #pragma once
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4522)  // Multiple assignment operators
+#else
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#endif
 
 #include <atomic>
 #include <type_traits>
@@ -36,9 +41,9 @@
 #include "mt-kahypar/macros.h"
 
 template<typename T>
-class CAtomic : public std::__atomic_base<T> {
+class CAtomic : public std::atomic<T> {
 public:
-  using Base = std::__atomic_base<T>;
+  using Base = std::atomic<T>;
 
   explicit CAtomic(const T value = T()) : Base(value) { }
 
@@ -56,7 +61,6 @@ public:
     return *this;
   }
 
-  // unfortunately the internal value M_i is private, so we cannot issue __atomic_add_fetch( &M_i, i, int(m) ) ourselves
   MT_KAHYPAR_ATTRIBUTE_ALWAYS_INLINE T add_fetch(T i, std::memory_order m = std::memory_order_seq_cst) {
     return Base::fetch_add(i, m) + i;
   }
@@ -251,6 +255,10 @@ class IntegralAtomicWrapper {
 
 
 
+#ifdef _MSC_VER
+#pragma warning(pop)
+#else
 #pragma GCC diagnostic pop
+#endif
 }  // namespace parallel
 }  // namespace mt_kahypar

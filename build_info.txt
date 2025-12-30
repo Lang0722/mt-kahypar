@@ -1,0 +1,101 @@
+MSBuild version 18.0.5+e22287bf1 for .NET Framework
+
+  MtKaHyPar-BuildSources.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\MtKaHyPar-BuildSources.dir\Release\MtKaHyPar-BuildSources.lib
+  MtKaHyPar-BuildTools.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\MtKaHyPar-BuildTools.dir\Release\MtKaHyPar-BuildTools.lib
+  MtKaHyPar-LibraryBuildSources.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\MtKaHyPar-LibraryBuildSources.dir\Release\MtKaHyPar-LibraryBuildSources.lib
+  BenchShuffle.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\BenchShuffle.exe
+  EvaluateBipart.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\EvaluateBipart.exe
+  EvaluatePartition.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\EvaluatePartition.exe
+  FixedVertexFileGenerator.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\FixedVertexFileGenerator.exe
+  GraphToHgr.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\GraphToHgr.exe
+  GridGraphGenerator.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\GridGraphGenerator.exe
+  HgrToGraph.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HgrToGraph.exe
+  HgrToParkway.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HgrToParkway.exe
+  HgrToZoltan.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HgrToZoltan.exe
+  HierarchicalTargetGraphGenerator.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HierarchicalTargetGraphGenerator.exe
+  HypergraphStats.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HypergraphStats.exe
+  MetisToScotch.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\MetisToScotch.exe
+  MtKaHyPar.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\mt-kahypar\application\Release\MtKaHyPar.exe
+  MtKaHyPar-CLI.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\mt-kahypar\application\Release\MtKaHyPar-CLI.exe
+  MtxToGraph.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\MtxToGraph.exe
+  OneToOneMapping.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\OneToOneMapping.exe
+  SnapToHgr.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\SnapToHgr.exe
+  SnapToMetis.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\SnapToMetis.exe
+  VerifyPartition.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\VerifyPartition.exe
+  VerifyTargetGraphPartition.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\VerifyTargetGraphPartition.exe
+  mtkahypar.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\lib\Release\mtkahypar.dll
+  gmock.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\bin\Release\gmock.dll
+  gtest.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\bin\Release\gtest.dll
+  gtest_main.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\bin\Release\gtest_main.dll
+LINK : fatal error LNK1181: cannot open input file '..\..\lib\Release\mtkahypar.lib' [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+  mtkahypar_tests.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\Release\mtkahypar_tests.exe
+MSBuild version 18.0.5+e22287bf1 for .NET Framework
+
+  MtKaHyPar-BuildSources.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\MtKaHyPar-BuildSources.dir\Release\MtKaHyPar-BuildSources.lib
+  MtKaHyPar-BuildTools.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\MtKaHyPar-BuildTools.dir\Release\MtKaHyPar-BuildTools.lib
+  MtKaHyPar-LibraryBuildSources.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\MtKaHyPar-LibraryBuildSources.dir\Release\MtKaHyPar-LibraryBuildSources.lib
+  BenchShuffle.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\BenchShuffle.exe
+  EvaluateBipart.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\EvaluateBipart.exe
+  EvaluatePartition.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\EvaluatePartition.exe
+  FixedVertexFileGenerator.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\FixedVertexFileGenerator.exe
+  GraphToHgr.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\GraphToHgr.exe
+  GridGraphGenerator.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\GridGraphGenerator.exe
+  HgrToGraph.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HgrToGraph.exe
+  HgrToParkway.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HgrToParkway.exe
+  HgrToZoltan.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HgrToZoltan.exe
+  HierarchicalTargetGraphGenerator.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HierarchicalTargetGraphGenerator.exe
+  HypergraphStats.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\HypergraphStats.exe
+  MetisToScotch.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\MetisToScotch.exe
+  MtKaHyPar.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\mt-kahypar\application\Release\MtKaHyPar.exe
+  MtKaHyPar-CLI.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\mt-kahypar\application\Release\MtKaHyPar-CLI.exe
+  MtxToGraph.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\MtxToGraph.exe
+  OneToOneMapping.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\OneToOneMapping.exe
+  SnapToHgr.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\SnapToHgr.exe
+  SnapToMetis.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\SnapToMetis.exe
+  VerifyPartition.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\VerifyPartition.exe
+  VerifyTargetGraphPartition.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tools\Release\VerifyTargetGraphPartition.exe
+  mtkahypar.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\lib\Release\mtkahypar.dll
+  gmock.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\bin\Release\gmock.dll
+  gtest.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\bin\Release\gtest.dll
+  gtest_main.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\bin\Release\gtest_main.dll
+  mtkahypar_interface_test.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\Release\mtkahypar_interface_test.exe
+  	Running mtkahypar_interface_test	Cleanup mtkahypar_interface_test
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "setlocal [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/langhuo/Desktop/Project/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/langhuo/Desktop/Project/mt-kahypar/mt-kahypar/build/tests/interface/Release/mtkahypar_interface_test.exe -installedDir C:/Users/langhuo/Desktop/Project/vcpkg/installed/arm64-windows/bin -OutVariable out [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: setlocal [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: cd C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: C: [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" -E copy C:/Users/langhuo/Desktop/Project/mt-kahypar/mt-kahypar/build/tests/interface/Release/mtkahypar_interface_test.exe C:/Users/langhuo/Desktop/Project/mt-kahypar/mt-kahypar/build/tests/interface/Release/mtkahypar_interface_test.exe_failed [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\Release\mtkahypar_interface_test.exe [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: setlocal [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: cd C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: C: [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: "C:\Program Files\CMake\bin\cmake.exe" -E remove C:/Users/langhuo/Desktop/Project/mt-kahypar/mt-kahypar/build/tests/interface/Release/mtkahypar_interface_test.exe_failed [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmErrorLevel [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: exit /b %1 [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :cmDone [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: if %errorlevel% neq 0 goto :VCEnd [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Microsoft\VC\v180\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code -1073741515. [C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\interface\mtkahypar_interface_test.vcxproj]
+  mtkahypar_tests.vcxproj -> C:\Users\langhuo\Desktop\Project\mt-kahypar\mt-kahypar\build\tests\Release\mtkahypar_tests.exe

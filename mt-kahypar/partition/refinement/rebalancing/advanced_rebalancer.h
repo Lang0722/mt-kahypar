@@ -32,6 +32,7 @@
 #include "mt-kahypar/partition/refinement/i_refiner.h"
 #include "mt-kahypar/partition/refinement/i_rebalancer.h"
 #include "mt-kahypar/partition/refinement/gains/gain_cache_ptr.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 
 namespace mt_kahypar {
 
@@ -59,12 +60,12 @@ namespace rebalancer {
     // Returns true if the node is marked as movable, is not locked and taking the lock now succeeds
     bool tryLock() {
       uint8_t expected = 1;
-      return state == 1 && __atomic_compare_exchange_n(&state, &expected, 2, false, __ATOMIC_ACQUIRE, __ATOMIC_RELAXED);
+      return state == 1 && mtk_atomic_compare_exchange(&state, &expected, uint8_t(2), MemoryOrder::Acquire, MemoryOrder::Relaxed);
     }
 
-    void unlock() { __atomic_store_n(&state, 1, __ATOMIC_RELEASE); }
+    void unlock() { mtk_atomic_store(&state, uint8_t(1), MemoryOrder::Release); }
 
-    void markAsMovedAndUnlock() { __atomic_store_n(&state, 3, __ATOMIC_RELEASE); }
+    void markAsMovedAndUnlock() { mtk_atomic_store(&state, uint8_t(3), MemoryOrder::Release); }
 
     void markAsMovable() { state = 1; }
 

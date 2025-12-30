@@ -31,6 +31,7 @@
 
 #include "mt-kahypar/macros.h"
 #include "mt-kahypar/utils/bit_ops.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 #include "mt-kahypar/datastructures/hypergraph_common.h"
 #include "mt-kahypar/datastructures/bitset.h"
 
@@ -42,7 +43,7 @@ class StaticBitset {
  public:
   using Block = uint64_t;
   static constexpr Block BITS_PER_BLOCK = std::numeric_limits<Block>::digits;
-  static_assert(__builtin_popcountll(BITS_PER_BLOCK) == 1);
+  static_assert(utils::is_power_of_2(BITS_PER_BLOCK));
   static constexpr Block MOD_MASK = BITS_PER_BLOCK - 1;
   static constexpr Block DIV_SHIFT = utils::log2(BITS_PER_BLOCK);
 
@@ -113,7 +114,7 @@ class StaticBitset {
 
     MT_KAHYPAR_ATTRIBUTE_ALWAYS_INLINE Block loadCurrentBlock() {
       ASSERT(static_cast<size_t>(_current_block_id >> DIV_SHIFT) <= _num_blocks);
-      return __atomic_load_n(_bitset + ( _current_block_id >> DIV_SHIFT ), __ATOMIC_RELAXED);
+      return mtk_atomic_load(_bitset + ( _current_block_id >> DIV_SHIFT ), MemoryOrder::Relaxed);
     }
 
     ENABLE_ASSERTIONS(const size_t _num_blocks;)
@@ -172,7 +173,7 @@ class StaticBitset {
     int cnt = 0;
     for ( size_t i = 0; i < _num_blocks; ++i ) {
       cnt += utils::popcount_64(
-        __atomic_load_n(_bitset + i, __ATOMIC_RELAXED));
+        mtk_atomic_load(_bitset + i, MemoryOrder::Relaxed));
     }
     return cnt;
   }

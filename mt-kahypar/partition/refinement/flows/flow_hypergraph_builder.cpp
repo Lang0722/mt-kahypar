@@ -33,6 +33,8 @@
 #include <tbb/parallel_scan.h>
 #include <tbb/parallel_for.h>
 
+#include "mt-kahypar/utils/atomic_ops.h"
+
 namespace mt_kahypar {
 
 // ####################### Sequential Construction #######################
@@ -171,7 +173,7 @@ void FlowHypergraphBuilder::finalizeParallel() {
       const whfc::Node& u = p.pin;
       //destroy first_out temporarily and reset later
       whfc::InHeIndex::ValueType ind_he = nodes[u].first_out +
-        __atomic_fetch_add(&_inc_he_pos[u], 1, __ATOMIC_RELAXED);
+        mtk_atomic_fetch_add(&_inc_he_pos[u], uint32_t(1), MemoryOrder::Relaxed);
       incident_hyperedges[ind_he] = { e, pin_it };
       //set iterator for incident hyperedge -> its position in incident_hyperedges of the node
       p.he_inc_iter = whfc::InHeIndex(ind_he);

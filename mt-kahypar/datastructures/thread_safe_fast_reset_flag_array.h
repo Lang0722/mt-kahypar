@@ -35,6 +35,7 @@
 
 #include "mt-kahypar/macros.h"
 #include "mt-kahypar/parallel/atomic_wrapper.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 
 // based on http://upcoder.com/9/fast-resettable-flag-vector/
 
@@ -77,11 +78,11 @@ public:
   // ! Changes value of entry i from false to true and returns true, if the value
   // ! hold on position i was false and was successfully set to true
   bool compare_and_set_to_true(const size_t i) {
-    Type expected = __atomic_load_n(&_v[i], __ATOMIC_RELAXED);
+    Type expected = mtk_atomic_load(&_v[i], MemoryOrder::Relaxed);
     Type desired = _threshold;
     if ( expected != _threshold &&
-        __atomic_compare_exchange(&_v[i], &expected, &desired,
-          false, __ATOMIC_ACQ_REL, __ATOMIC_RELAXED) ) {
+        mtk_atomic_compare_exchange(&_v[i], &expected, desired,
+          MemoryOrder::AcqRel, MemoryOrder::Relaxed) ) {
       // Value was successfully set from false to true
       return true;
     } else {
@@ -92,7 +93,7 @@ public:
   }
 
   void set(const size_t i, const bool value) {
-    __atomic_store_n(&_v[i], value ? _threshold : 0, __ATOMIC_RELAXED);
+    mtk_atomic_store(&_v[i], value ? _threshold : Type(0), MemoryOrder::Relaxed);
   }
 
   void setUnsafe(const size_t i, const bool value) {
@@ -132,13 +133,13 @@ public:
 
  private:
   bool isSet(size_t i) const {
-    return __atomic_load_n(&_v[i], __ATOMIC_RELAXED) == _threshold;
+    return mtk_atomic_load(&_v[i], MemoryOrder::Relaxed) == _threshold;
   }
 
   void initialize(const bool init = false) {
-    const Type init_value = init ? _threshold : 0;
+    const Type init_value = init ? _threshold : Type(0);
     for ( size_t i = 0; i < _size; ++i ) {
-      __atomic_store_n(&_v[i], init_value, __ATOMIC_RELAXED);
+      mtk_atomic_store(&_v[i], init_value, MemoryOrder::Relaxed);
     }
   }
 

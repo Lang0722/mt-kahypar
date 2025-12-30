@@ -40,6 +40,7 @@
 #include "mt-kahypar/datastructures/connectivity_set.h"
 #include "mt-kahypar/datastructures/hypergraph_common.h"
 #include "mt-kahypar/datastructures/sparse_map.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 #include "mt-kahypar/utils/range.h"
 #include "mt-kahypar/macros.h"
 
@@ -130,7 +131,7 @@ class DeltaConnectivitySet {
     MT_KAHYPAR_ATTRIBUTE_ALWAYS_INLINE UnsafeBlock loadCurrentBlock() {
       ASSERT(static_cast<size_t>(_current_block_id / BITS_PER_BLOCK) < _num_blocks);
       const size_t block_idx = _current_block_id / BITS_PER_BLOCK;
-      return __atomic_load_n(_shared_bitset + block_idx, __ATOMIC_RELAXED) ^ *( _thread_local_bitset + block_idx );
+      return mtk_atomic_load(_shared_bitset + block_idx, MemoryOrder::Relaxed) ^ *( _thread_local_bitset + block_idx );
     }
 
     const size_t _num_blocks;

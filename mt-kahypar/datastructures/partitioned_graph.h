@@ -44,6 +44,7 @@
 #include "mt-kahypar/parallel/atomic_wrapper.h"
 #include "mt-kahypar/parallel/stl/scalable_vector.h"
 #include "mt-kahypar/parallel/stl/thread_locals.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 #include "mt-kahypar/utils/range.h"
 #include "mt-kahypar/utils/timer.h"
 
@@ -1139,7 +1140,7 @@ private:
         // small hack to only set this when assertions are enabled
         ASSERT(_edge_sync_is_dirty = true);
       }
-      __atomic_store_n(&_part_ids[u], to, __ATOMIC_RELAXED);
+      mtk_atomic_store(&_part_ids[u], to, MemoryOrder::Relaxed);
       DBG << "Done changing node part: " << V(u) << " >>>";
       return true;
     } else {
@@ -1180,7 +1181,7 @@ private:
                                     const NotificationFunc& notify_func) {
     const HyperedgeID unique_id = uniqueEdgeID(edge);
     const HypernodeID v = edgeTarget(edge);
-    PartitionID block_of_v = __atomic_load_n(&_part_ids[v], __ATOMIC_RELAXED);
+    PartitionID block_of_v = mtk_atomic_load(&_part_ids[v], MemoryOrder::Relaxed);
     EdgeMove& edge_move = _edge_sync[unique_id];
 
     // Note: It is important that `edge_move` tracks the block of both nodes.

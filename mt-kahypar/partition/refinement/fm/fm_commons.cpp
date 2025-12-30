@@ -30,6 +30,7 @@
 #include "mt-kahypar/partition/refinement/gains/gain_definitions.h"
 #include "mt-kahypar/datastructures/sparse_map.h"
 #include "mt-kahypar/partition/refinement/fm/fm_commons.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 
 
 namespace mt_kahypar {
@@ -216,7 +217,7 @@ namespace mt_kahypar {
           while (it < map.end() && keyToPair(it->key).first == block) {
             BucketID current_rank = keyToPair(it->key).second;
             if (current_rank < upper_limit) {
-              __atomic_fetch_add(&fallback_bucket_weights[block][current_rank], it->value, __ATOMIC_RELAXED);
+              mtk_atomic_fetch_add(&fallback_bucket_weights[block][current_rank], it->value, MemoryOrder::Relaxed);
             }
             ++it;
           }

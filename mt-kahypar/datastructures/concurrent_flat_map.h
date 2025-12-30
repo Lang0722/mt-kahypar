@@ -37,6 +37,7 @@
 #include "kahypar-resources/meta/mandatory.h"
 
 #include "mt-kahypar/macros.h"
+#include "mt-kahypar/utils/atomic_ops.h"
 
 namespace mt_kahypar {
 namespace ds {

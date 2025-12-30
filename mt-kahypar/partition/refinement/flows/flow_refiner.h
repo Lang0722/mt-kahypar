@@ -31,6 +31,7 @@
 
 #include <tbb/concurrent_vector.h>
 
+#include "mt-kahypar/utils/atomic_ops.h"
 #include "WHFC/algorithm/hyperflowcutter.h"
 #include "WHFC/algorithm/sequential_push_relabel.h"
 #include "WHFC/algorithm/parallel_push_relabel.h"

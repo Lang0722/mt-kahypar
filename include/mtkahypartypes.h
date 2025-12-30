@@ -139,7 +139,13 @@ typedef enum {
 } mt_kahypar_file_format_type_t;
 
 #ifndef MT_KAHYPAR_API
-#   if __GNUC__ >= 4
+#   if defined(_MSC_VER) || defined(__MINGW32__)
+#       ifdef MTKAHYPAR_EXPORTS
+#           define MT_KAHYPAR_API __declspec(dllexport)
+#       else
+#           define MT_KAHYPAR_API __declspec(dllimport)
+#       endif
+#   elif __GNUC__ >= 4
 #       define MT_KAHYPAR_API __attribute__ ((visibility("default")))
 #   else
 #       define MT_KAHYPAR_API
