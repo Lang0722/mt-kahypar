@@ -28,6 +28,15 @@
 
 #ifndef KAHYPAR_DISABLE_HWLOC
   #include <hwloc.h>
+#else
+  #ifdef _WIN32
+    #define WIN32_LEAN_AND_MEAN
+    #ifndef NOMINMAX
+      #define NOMINMAX
+    #endif
+    #include <windows.h>
+  #endif
+  #include <thread>
 #endif
 
 #include "mt-kahypar/parallel/tbb_initializer.h"
@@ -73,6 +82,18 @@ void activate_interleaved_membind_policy() {
   hwloc_cpuset_t cpuset = mt_kahypar::TBBInitializer::instance().used_cpuset();
   parallel::HardwareTopology<>::instance().activate_interleaved_membind_policy(cpuset);
   hwloc_bitmap_free(cpuset);
+}
+#else
+size_t num_hardware_cpus() {
+  return std::thread::hardware_concurrency();
+}
+
+int num_used_numa_nodes() {
+  return mt_kahypar::TBBInitializer::instance().num_used_numa_nodes();
+}
+
+void activate_interleaved_membind_policy() {
+  // do nothing
 }
 #endif
 
